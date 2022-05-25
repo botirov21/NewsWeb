@@ -11,13 +11,20 @@ namespace NewsWeb.AdminDashboard.Controllers
 
         public CategoryController(ICategoryInterface category)
         {
-            this.categoryinter = categoryinter;
+            categoryinter = category;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await categoryinter.GetCategoriesAsync());
+            var list = await categoryinter.GetCategoriesAsync();
+            return View(list);
         }
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Add(Category category)
         {

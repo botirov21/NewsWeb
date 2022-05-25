@@ -9,13 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));
 builder.Services.AddScoped<ICategoryInterface, CategoryRepo>();
 builder.Services.AddScoped<ILinksInterface, LinksRepo>();
 builder.Services.AddScoped<INewsInterface, NewsRepo>();
 
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
