@@ -1,4 +1,5 @@
 ﻿using NewsWeb.Models;
+using POS_System.Domains.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace NewsWeb.Repositories.Interfaces
 {
     public interface ILinksInterface
     {
+        Task<PagedList<Links>> GetLinks(QueryStringParameters parameters);
         Task<List<Links>> GetAllLinksAsync();
         Task<Links> GetLinksAsync(Guid linksId);
         Task<Links> AddLinksAsync(Links links);

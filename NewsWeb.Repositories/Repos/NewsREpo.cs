@@ -2,6 +2,7 @@
 using NewsWeb.Data;
 using NewsWeb.Models;
 using NewsWeb.Repositories.Interfaces;
+using POS_System.Domains.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,10 @@ namespace NewsWeb.Repositories.Repos
         public Task<List<News>> GetAllNewsAsync() =>
             _dbContext.News.ToListAsync();
 
+        public Task<PagedList<News>> GetNews(QueryStringParameters parameters)
+        {
+            return Task.FromResult(PagedList<News>.ToPagedList(_dbContext.News, parameters.PageNumber, parameters.PageSize));
+        }
 
         public Task<News> GetNewsAsync(Guid newsId) =>
             _dbContext.News.FirstOrDefaultAsync(p => p.Id == newsId);

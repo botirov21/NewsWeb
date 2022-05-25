@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewsWeb.Data;
 using NewsWeb.Models;
+using POS_System.Domains.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,17 @@ namespace NewsWeb.Repositories.Repos
             _dbContext.SaveChanges();
             return Task.FromResult(0);
         }
+
+        public Task<List<Category>> GetAllCategoriesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PagedList<Category>> GetCategories(QueryStringParameters parameters)
+        {
+            return Task.FromResult(PagedList<Category>.ToPagedList(_dbContext.Categories, parameters.PageNumber, parameters.PageSize));
+        }
+
 
         public Task<List<Category>> GetCategoriesAsync() =>
             _dbContext.Categories.ToListAsync();
