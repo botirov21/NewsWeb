@@ -4,18 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NewsWeb</title>
-    <!-- CSS here -->
-  <link rel="stylesheet" href="~/css/~/assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="~/css/~/assets/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="~/css/~/assets/css/slicknav.css">
-  <link rel="stylesheet" href="~/assets/css/animate.min.css">
-  <link rel="stylesheet" href="~/~/assets/css/magnific-popup.css">
-  <link rel="stylesheet" href="~/assets/css/fontawesome-all.min.css">
-  <link rel="stylesheet" href="~/assets/css/themify-icons.css">
-  <link rel="stylesheet" href="~/assets/css/slick.css">
-  <link rel="stylesheet" href="~/assets/css/nice-select.css">
-  <link rel="stylesheet" href="~/assets/css/style.css">
-  <link rel="stylesheet" href="~/assets/css/responsive.css">
+      <!-- CSS here -->
+      <link rel="stylesheet" href="~/css/bootstrap.min.css">
+      <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+      <link rel="stylesheet" href="~/css/slicknav.css">
+      <link rel="stylesheet" href="~/css/animate.min.css">
+      <link rel="stylesheet" href="~/css/magnific-popup.css">
+      <link rel="stylesheet" href="~/css/fontawesome-all.min.css">
+      <link rel="stylesheet" href="~/css/themify-icons.css">
+      <link rel="stylesheet" href="~/css/slick.css">
+      <link rel="stylesheet" href="~/css/nice-select.css">
+      <link rel="stylesheet" href="~/css/style.css">
+      <link rel="stylesheet" href="~/css/responsive.css">
 </head>
 <body>
    <!-- Header Start -->
@@ -26,9 +26,34 @@
                      <div class="col-xl-12">
                           <div class="row d-flex justify-content-between align-items-center">
                               <div class="header-info-left">
-                                  <ul>     
-                                      <li><img src="~/assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                      <li><img src="~/assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
+                                  <ul>     @*
+                                      <li><img src="~/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
+
+*@
+                                    @{
+                                        string weekday = DateTime.Now.DayOfWeek.ToString();
+                                        string day = DateTime.Now.Day.ToString();
+                                        string month = DateTime.Now.Month switch
+                                        {
+                                            1 => "January",
+                                            2 => "February",
+                                            3 => "March",
+                                            4 => "April",
+                                            5 => "May",
+                                            6 => "June",
+                                            7 => "July",
+                                            8 => "August",
+                                            9 => "September",
+                                            10 => "October",
+                                            11 => "November",
+                                            12 => "December",
+                                            _ => "Wrong month number"
+                                        };
+                                        string year = DateTime.Now.Year.ToString();
+                                    }
+
+
+                                      <li><img src="~/img/icon/header_icon1.png" alt="">@weekday, @month @day, @year</li>
                                   </ul>
                               </div>
                               <div class="header-info-right">
@@ -48,12 +73,12 @@
                           <!-- Logo -->
                           <div class="col-xl-3 col-lg-3 col-md-3">
                               <div class="logo">
-                                  <a asp-controller= "home" asp-action="index"> <img src="~/assets/img/logo/logo.png" alt=""></a>
+                                  <a asp-controller= "home" asp-action="index"> <img src="~/img/logo/logo.png" alt=""></a>
                               </div>
                           </div>
                           <div class="col-xl-9 col-lg-9 col-md-9">
                               <div class="header-banner f-right ">
-                                  <img src="~/assets/img/hero/header_card.jpg" alt="">
+                                  <img src="~/img/hero/header_card.jpg" alt="">
                               </div>
                           </div>
                       </div>
@@ -65,26 +90,25 @@
                           <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
                               <!-- sticky -->
                                   <div class="sticky-logo">
-                                      <a asp-controller= "home" asp-action="index"> <img src="~/assets/img/logo/logo.png" alt=""></a>
+                                      <a asp-controller= "home" asp-action="index"> <img src="~/img/logo/logo.png" alt=""></a>
                                   </div>
                               <!-- Main-menu -->
                               <div class="main-menu d-none d-md-block">
                                   <nav>                  
                                       <ul id="navigation">    
-                                          <a class="nav-link" <a asp-controller= "home" asp-action="index">Home</a>
-                                          <a class="nav-link" <a asp-controller= "home" asp-action="categori">Category</a>
-                                          <a class="nav-link" <a asp-controller= "home" asp-action="about">About</a>
-                                          <a class="nav-link" <a asp-controller= "home" asp-action="blog">Blog</a>
-                                              <li><a href="#">Pages</a>
-                                              <ul class="submenu">
-                                          <a class="nav-link" <a asp-controller= "home" asp-action="contact">Contact</a>
-                                          <a class="nav-link" <a asp-controller= "home" asp-action="details">Details</a>
-                                          <a class="nav-link" <a asp-controller= "home" asp-action="elements">Elements</a>
-                                          <a class="nav-link" <a asp-controller= "home" asp-action="main">Main</a>
-                                          <a class="nav-link" <a asp-controller= "home" asp-action="single_blog">Single Blog</a>
-                                          
-                                              </ul>
-                                          </li>
+                                          <li><a class="nav-link" asp-controller= "home" asp-action="index">Home</a></li>
+                                          <li><a class="nav-link" asp-controller= "home" asp-action="categori">Category</a></li>
+                                          <li><a class="nav-link" asp-controller= "home" asp-action="about">About</a></li>
+                                          <li><a class="nav-link" asp-controller= "home" asp-action="blog">Blog</a></li>
+                                            <li>
+                                                <ul class="submenu">
+                                                    <li><a class="nav-link" asp-controller= "home" asp-action="contact">Contact</a></li>
+                                                    <li><a class="nav-link" asp-controller= "home" asp-action="details">Details</a></li>
+                                                    <li><a class="nav-link" asp-controller= "home" asp-action="elements">Elements</a></li>
+                                                    <li><a class="nav-link" asp-controller= "home" asp-action="main">Main</a></li>
+                                                    <li><a class="nav-link" asp-controller= "home" asp-action="single_blog">Single Blog</a></li>                                      
+                                                </ul>
+                                            </li>
                                       </ul>
                                   </nav>
                               </div>
@@ -110,8 +134,9 @@
           </div>
      </div>
       <!-- Header End -->
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    <div>
+        <main>
             @RenderBody()
         </main>
     </div>
@@ -126,7 +151,7 @@
                            <div class="single-footer-caption">
                                <!-- logo -->
                                <div class="footer-logo">
-                                   <a href="index.html"><img src="~/assets/img/logo/logo2_footer.png" alt=""></a>
+                                   <a asp-controller= "home" asp-action="index"> <img src="~/img/logo/logo2_footer.png" alt=""></a>
                                </div>
                                <div class="footer-tittle">
                                    <div class="footer-pera">
@@ -157,7 +182,7 @@
                                            onblur="this.placeholder = ' Email Address '">
                                            <div class="form-icon">
                                            <button type="submit" name="submit" id="newsletter-submit"
-                                           class="email_icon newsletter-submit button-contactForm"><img src="~/assets/img/logo/form-iocn.png" alt=""></button>
+                                           class="email_icon newsletter-submit button-contactForm"><img src="~/img/logo/form-iocn.png" alt=""></button>
                                            </div>
                                            <div class="mt-10 info"></div>
                                        </form>
@@ -173,12 +198,12 @@
                            </div>
                            <div class="instagram-gellay">
                                <ul class="insta-feed">
-                                   <li><a href="#"><img src="~/assets/img/post/instra1.jpg" alt=""></a></li>
-                                   <li><a href="#"><img src="~/assets/img/post/instra2.jpg" alt=""></a></li>
-                                   <li><a href="#"><img src="~/assets/img/post/instra3.jpg" alt=""></a></li>
-                                   <li><a href="#"><img src="~/assets/img/post/instra4.jpg" alt=""></a></li>
-                                   <li><a href="#"><img src="~/assets/img/post/instra5.jpg" alt=""></a></li>
-                                   <li><a href="#"><img src="~/assets/img/post/instra6.jpg" alt=""></a></li>
+                                   <li><a href="#"><img src="~/img/post/instra1.jpg" alt=""></a></li>
+                                   <li><a href="#"><img src="~/img/post/instra2.jpg" alt=""></a></li>
+                                   <li><a href="#"><img src="~/img/post/instra3.jpg" alt=""></a></li>
+                                   <li><a href="#"><img src="~/img/post/instra4.jpg" alt=""></a></li>
+                                   <li><a href="#"><img src="~/img/post/instra5.jpg" alt=""></a></li>
+                                   <li><a href="#"><img src="~/img/post/instra6.jpg" alt=""></a></li>
                                </ul>
                            </div>
                        </div>
@@ -194,8 +219,8 @@
                        <div class="col-lg-6">
                            <div class="footer-copy-right">
                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                            </div>
                        </div>
                        <div class="col-lg-6">
@@ -217,38 +242,38 @@
     <!-- JS here -->
 	
 		<!-- All JS Custom Plugins Link Here here -->
-      <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-		<script src="./assets/js/bootstrap.min.js"></script>
-      <script src="./assets/js/popper.min.js"></script>
-      <script src="./assets/js/bootstrap.min.js"></script>
+      <script src="~/js/vendor/modernizr-3.5.0.min.js" asp-append-version="true"></script>
+		<script src="~/js/bootstrap.min.js" asp-append-version="true"></script>
+      <script src="~/js/popper.min.js" asp-append-version="true"></script>
+      <script src="~/js/bootstrap.min.js" asp-append-version="true"></script>
 	   <!-- Jquery Mobile Menu -->
-      <script src="./assets/js/jquery.slicknav.min.js"></script>
+      <script src="~/js/jquery.slicknav.min.js" asp-append-version="true"></script>
 
 		<!-- Jquery Slick , Owl-Carousel Plugins -->
-      <script src="./assets/js/owl.carousel.min.js"></script>
-      <script src="./assets/js/slick.min.js"></script>
+      <script src="~/js/owl.carousel.min.js" asp-append-version="true"></script>
+      <script src="~/js/slick.min.js" asp-append-version="true"></script>
       <!-- Date Picker -->
-      <script src="./assets/js/gijgo.min.js"></script>
+      <script src="~/js/gijgo.min.js" asp-append-version="true"></script>
 		<!-- One Page, Animated-HeadLin -->
-      <script src="./assets/js/wow.min.js"></script>
-		<script src="./assets/js/animated.headline.js"></script>
-      <script src="./assets/js/jquery.magnific-popup.js"></script>
+      <script src="~/js/wow.min.js" asp-append-version="true"></script>
+		<script src="~/js/animated.headline.js" asp-append-version="true"></script>
+      <script src="~/js/jquery.magnific-popup.js" asp-append-version="true"></script>
 
 		<!-- Scrollup, nice-select, sticky -->
-      <script src="./assets/js/jquery.scrollUp.min.js"></script>
-      <script src="./assets/js/jquery.nice-select.min.js"></script>
-		<script src="./assets/js/jquery.sticky.js"></script>
+      <script src="~/js/jquery.scrollUp.min.js" asp-append-version="true"></script>
+      <script src="~/js/jquery.nice-select.min.js" asp-append-version="true"></script>
+		<script src="~/js/jquery.sticky.js" asp-append-version="true"></script>
         
         <!-- contact js -->
-        <script src="./assets/js/contact.js"></script>
-        <script src="./assets/js/jquery.form.js"></script>
-        <script src="./assets/js/jquery.validate.min.js"></script>
-        <script src="./assets/js/mail-script.js"></script>
-        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        <script src="~/js/contact.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.form.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.validate.min.js" asp-append-version="true"></script>
+        <script src="~/js/mail-script.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.ajaxchimp.min.js" asp-append-version="true"></script>
         
 		<!-- Jquery Plugins, main Jquery -->	
-        <script src="./assets/js/plugins.js"></script>
-        <script src="./assets/js/main.js"></script>
+        <script src="~/js/plugins.js" asp-append-version="true"></script>
+        <script src="~/js/main.js" asp-append-version="true"></script>
         
     @await RenderSectionAsync("Scripts", required: false)
 </body>

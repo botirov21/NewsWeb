@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewsWeb.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewsWeb.Data
 {
@@ -13,10 +8,32 @@ namespace NewsWeb.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
+            Database.EnsureCreated();
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Links> Link { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Category>()
+                .HasData(
+                        new Category()
+                        {
+                            Id = Guid.NewGuid(),
+                            Name = "IT"
+                        },
+                        new Category()
+                        {
+                            Id = Guid.NewGuid(),
+                            Name = "Global"
+                        },
+                        new Category()
+                        {
+                            Id = Guid.NewGuid(),
+                            Name = "Footbal"
+                        }
+                    );
+        }
     }
 }
