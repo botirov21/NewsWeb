@@ -26,9 +26,34 @@
                      <div class="col-xl-12">
                           <div class="row d-flex justify-content-between align-items-center">
                               <div class="header-info-left">
-                                  <ul>     
+                                  <ul>     @*
                                       <li><img src="~/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                      <li><img src="~/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
+
+*@
+                                    @{
+                                        string weekday = DateTime.Now.DayOfWeek.ToString();
+                                        string day = DateTime.Now.Day.ToString();
+                                        string month = DateTime.Now.Month switch
+                                        {
+                                            1 => "January",
+                                            2 => "February",
+                                            3 => "March",
+                                            4 => "April",
+                                            5 => "May",
+                                            6 => "June",
+                                            7 => "July",
+                                            8 => "August",
+                                            9 => "September",
+                                            10 => "October",
+                                            11 => "November",
+                                            12 => "December",
+                                            _ => "Wrong month number"
+                                        };
+                                        string year = DateTime.Now.Year.ToString();
+                                    }
+
+
+                                      <li><img src="~/img/icon/header_icon1.png" alt="">@weekday, @month @day, @year</li>
                                   </ul>
                               </div>
                               <div class="header-info-right">
