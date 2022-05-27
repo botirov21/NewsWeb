@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NewsWeb.Data\NewsWeb.Data.csproj" />
+    <ProjectReference Include="..\NewsWeb.Repositories\NewsWeb.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

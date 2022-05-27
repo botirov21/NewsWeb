@@ -1,14 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using NewsWeb.Repositories;
+using NewsWeb.Repositories.Interfaces;
+using NewsWeb.ViewModels;
 
 namespace NewsWeb.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ICategoryInterface categoryInterface;
+        private readonly INewsInterface newsInterface;
 
-
-        public IActionResult Index()
+        public HomeController(ICategoryInterface categoryInterface,
+                              INewsInterface newsInterface)
         {
+            this.categoryInterface = categoryInterface;
+            this.newsInterface = newsInterface;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var list = (await newsInterface.GetAllNewsAsync()).OrderByDescending(n => n.NumberOfViewers).ToList();
+            if (list.Count >= 0)
+            {
+                IndexViewModel viewModel = new IndexViewModel()
+                {
+                    Top1 = list[0],
+                    Top4 = list.GetRange(1, 3).ToList()
+                };
+
+                return View(viewModel);
+            }
+
             return View();
         }
         public IActionResult About()
@@ -21,10 +43,32 @@ namespace NewsWeb.Controllers
             return View();
         }
 
-        public IActionResult Categori()
+        public async Task<IActionResult> Categori()
         {
-            return View();
+            var list = await categoryInterface.GetCategoriesAsync();
+            var newsList = await newsInterface.GetAllNewsAsync();
 
+            CategoryViewModel viewModel = new CategoryViewModel()
+            {
+                News = newsList.Take(4).ToList(),
+                Categories = list
+            };
+
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> CategorySelect(Guid id)
+        {
+            var list = await categoryInterface.GetCategoriesAsync();
+            var newsList = await newsInterface.GetAllNewsAsync();
+
+            CategoryViewModel viewModel = new CategoryViewModel()
+            {
+                News = newsList.Where(n => n.CategoryId == id).ToList(),
+                Categories = list
+            };
+
+            return View("Categori", viewModel);
         }
 
         public IActionResult Contact()
@@ -32,13 +76,12 @@ namespace NewsWeb.Controllers
             return View();
 
         }
-
-        public IActionResult Details()
+        public IActionResult Details(Guid id)
         {
-            return View();
+            var news = newsInterface.GetNewsAsync(id);
+            return View(news);
 
         }
-
         public IActionResult Elements()
         {
             return View();
@@ -49,19 +92,15 @@ namespace NewsWeb.Controllers
             return View();
 
         }
-
         public IActionResult Main()
         {
             return View();
 
         }
-
         public IActionResult Single_blog()
         {
             return View();
 
         }
-
-
     }
 }
