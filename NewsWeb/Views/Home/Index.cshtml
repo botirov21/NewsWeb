@@ -24,8 +24,8 @@
                         <div class="trend-top-img">
                             <img src="~/img/trending/trending_top.jpg" alt="">
                             <div class="trend-top-cap">
-                                <span>@Model.Top1.Title</span>
-                                <h2><a asp-controller="home" asp-action="details" asp-route-id="@Model.Top1.Id">Welcome To The Best Model Winner<br> Contest At Look of the year</a></h2>
+                                <span>@Model.Categories.FirstOrDefault(c => c.Id == Model.Top1.CategoryId).Name</span>
+                                <h2><a asp-controller="home" asp-action="details" asp-route-id="@Model.Top1.Id">@Model.Top1.Title</a></h2>
                             </div>
                         </div>
                     </div>
