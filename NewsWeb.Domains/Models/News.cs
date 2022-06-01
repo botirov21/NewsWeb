@@ -8,7 +8,7 @@
         public string Images { get; set; }
         public DateTime CreatedTime { get; set; }
         public int NumberOfViewers { get; set; }
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         public string Links { get; set; }
 
     }

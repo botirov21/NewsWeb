@@ -46,7 +46,7 @@ namespace NewsWeb.Repositories.Repos
 
 
         public Task<List<Category>> GetCategoriesAsync() =>
-            Task.FromResult(_dbContext.Categories.ToList());
+            Task.FromResult(_dbContext.Categories.OrderBy(c => c.Name).ToList());
 
         public Task<Category> GetCategoryAsync(Guid categoryId) =>
             _dbContext.Categories.FirstOrDefaultAsync(p => p.Id == categoryId);
