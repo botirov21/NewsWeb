@@ -34,6 +34,7 @@ namespace NewsWeb.Data
                             Name = "Footbal"
                         }
                     );
+
         }
     }
 }

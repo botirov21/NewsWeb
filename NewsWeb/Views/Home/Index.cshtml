@@ -22,7 +22,7 @@
                     <!-- Trending Top -->
                     <div class="trending-top mb-30">
                         <div class="trend-top-img">
-                            <img src="~/img/trending/trending_top.jpg" alt="">
+                            <img src="~/img/@Model.Top1.Images" alt="">
                             <div class="trend-top-cap">
                                 <span>@Model.Categories.FirstOrDefault(c => c.Id == Model.Top1.CategoryId).Name</span>
                                 <h2><a asp-controller="home" asp-action="details" asp-route-id="@Model.Top1.Id">@Model.Top1.Title</a></h2>
@@ -32,89 +32,40 @@
                     <!-- Trending Bottom -->
                     <div class="trending-bottom">
                         <div class="row">
-                            <div class="col-lg-4">
-                            <div class="single-bottom mb-35">
-                                <div class="trend-bottom-img mb-30">
-                                    <img src="~/img/trending/trending_bottom1.jpg" alt="">
-                                </div>
-                                <div class="trend-bottom-cap">
-                                    <span class="color1">Lifestyple</span>
-                                    <h4><a href="~/details.html">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="single-bottom mb-35">
+                            @foreach (var item in Model.Top4)
+                            {
+                               <div class="col-lg-4">
+                                    <div class="single-bottom mb-35">
                                     <div class="trend-bottom-img mb-30">
-                                        <img src="~/img/trending/trending_bottom2.jpg" alt="">
+                                        <img src="~/img/@item.Images" alt="">
                                     </div>
                                     <div class="trend-bottom-cap">
-                                        <span class="color2">Sports</span>
-                                        <h4><a href="~/details.html">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4>
+                                        <span class="color1">@Model.Categories.FirstOrDefault(c => c.Id == item.CategoryId).Name</span>
+                                        <h4><a href="~/details.html">@item.Title</a></h4>
                                     </div>
+                                    </div> 
                                 </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="single-bottom mb-35">
-                                    <div class="trend-bottom-img mb-30">
-                                        <img src="~/img/trending/trending_bottom3.jpg" alt="">
-                                    </div>
-                                    <div class="trend-bottom-cap">
-                                        <span class="color3">Travels</span>
-                                        <h4><a href="~/details.html"> Welcome To The Best Model Winner Contest</a></h4>
-                                    </div>
-                                </div>
+                            }
                             </div>
                         </div>
-                    </div>
                 </div>
                 <!-- Riht content -->
                 <div class="col-lg-4">
-                    <div class="trand-right-single d-flex">
-                        <div class="trand-right-img">
-                            <img src="~/img/trending/right1.jpg" alt="">
-                        </div>
-                        <div class="trand-right-cap">
-                            <span class="color1">Concert</span>
-                            <h4><a href="~/details.html">Welcome To The Best Model Winner Contest</a></h4>
-                        </div>
-                    </div>
-                    <div class="trand-right-single d-flex">
-                        <div class="trand-right-img">
-                            <img src="~/img/trending/right2.jpg" alt="">
-                        </div>
-                        <div class="trand-right-cap">
-                            <span class="color3">sea beach</span>
-                            <h4><a href="~/details.html">Welcome To The Best Model Winner Contest</a></h4>
-                        </div>
-                    </div>
-                    <div class="trand-right-single d-flex">
-                        <div class="trand-right-img">
-                            <img src="~/img/trending/right3.jpg" alt="">
-                        </div>
-                        <div class="trand-right-cap">
-                            <span class="color2">Bike Show</span>
-                            <h4><a href="~/details.html">Welcome To The Best Model Winner Contest</a></h4>
-                        </div>
-                    </div> 
-                    <div class="trand-right-single d-flex">
-                        <div class="trand-right-img">
-                            <img src="~/img/trending/right4.jpg" alt="">
-                        </div>
-                        <div class="trand-right-cap">
-                            <span class="color4">See beach</span>
-                            <h4><a href="~/details.html">Welcome To The Best Model Winner Contest</a></h4>
-                        </div>
-                    </div>
-                    <div class="trand-right-single d-flex">
-                        <div class="trand-right-img">
-                            <img src="~/img/trending/right5.jpg" alt="">
-                        </div>
-                        <div class="trand-right-cap">
-                            <span class="color1">Skeping</span>
-                            <h4><a href="~/details.html">Welcome To The Best Model Winner Contest</a></h4>
-                        </div>
-                    </div>
+                    @if (Model.Top9 is not null)
+                        {
+                            @foreach (var item in Model.Top9)
+                            {
+                                <div class="trand-right-single d-flex">
+                                    <div class="trand-right-img">
+                                        <img src="~/img/@item.Images" alt="">
+                                    </div>
+                                    <div class="trand-right-cap">
+                                        <span class="color1">@Model.Categories.FirstOrDefault(c => c.Id == item.CategoryId).Name</span>
+                                        <h4><a href="~/details.html">@item.Title</a></h4>
+                                    </div>
+                                </div>
+                            }
+                        }
                 </div>
             </div>
         </div>
@@ -137,56 +88,41 @@
             <div class="row">
                 <div class="col-12">
                     <div class="weekly2-news-active dot-style d-flex dot-style">
-                        <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="~/img/news/weekly2News1.jpg" alt="">
-                            </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Corporate</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="~/#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div> 
-                        <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="~/img/news/weekly2News2.jpg" alt="">
-                            </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Event night</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="~/#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div> 
-                        <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="~/img/news/weekly2News3.jpg" alt="">
-                            </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Corporate</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="~/#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div>
+                        @foreach (var item in Model.Weekly5)
+                        {
                             <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="~/img/news/weekly2News4.jpg" alt="">
+                                <div class="weekly2-img">
+                                    <img style="width: 200px; height: 150px;" src="~/img/@item.Images" alt="">
+                                </div>
+                                <div class="weekly2-caption">
+                                    <span class="color1">@Model.Categories.FirstOrDefault(c => c.Id == item.CategoryId).Name</span>
+                                    <p>
+                                        @{
+                                        string day = item.CreatedTime.Day.ToString();
+                                        string month = item.CreatedTime.Month switch
+                                        {
+                                            1 => "January",
+                                            2 => "February",
+                                            3 => "March",
+                                            4 => "April",
+                                            5 => "May",
+                                            6 => "June",
+                                            7 => "July",
+                                            8 => "August",
+                                            9 => "September",
+                                            10 => "October",
+                                            11 => "November",
+                                            12 => "December",
+                                            _ => "Wrong month number"
+                                        };
+                                        string year = item.CreatedTime.Year.ToString();
+                                    }
+                                    @month @day, @year
+                                    </p>
+                                    <h4><a href="~/#">@item.Title</a></h4>
+                                </div>
                             </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Event time</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="~/#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div> 
-                            <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="~/img/news/weekly2News4.jpg" alt="">
-                            </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Corporate</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="~/#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div> 
+                        }
                     </div>
                 </div>
             </div>
