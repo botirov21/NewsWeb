@@ -41,7 +41,7 @@ namespace NewsWeb.Repositories.Repos
 
         public Task<News> GetCategoryNameById(Guid catagoryId)
         {
-            return Task.FromResult(_dbContext.News.FirstOrDefault(i => i.Id == catagoryId ));
+            return Task.FromResult(_dbContext.News.FirstOrDefault(i => i.CategoryId == catagoryId));
         }
 
         public Task<News> GetCategoryNameById(string catagoryName)
@@ -52,6 +52,11 @@ namespace NewsWeb.Repositories.Repos
         public Task<PagedList<News>> GetNews(QueryStringParameters parameters)
         {
             return Task.FromResult(PagedList<News>.ToPagedList(_dbContext.News, parameters.PageNumber, parameters.PageSize));
+        }
+
+        public News GetNews()
+        {
+            throw new Exception();
         }
 
         public Task<News> GetNewsAsync(Guid newsId) =>

@@ -11,6 +11,7 @@ namespace NewsWeb.AdminDashboard.ViewModels
         public DateTime CreatedTime { get; set; }
         public int NumberOfViewers { get; set; }
         public Category Category { get; set; }
+        public string CategoryName { get; set; }
         public string Links { get; set; }
 
     }

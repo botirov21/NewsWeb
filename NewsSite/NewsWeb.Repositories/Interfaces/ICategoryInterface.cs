@@ -11,5 +11,6 @@ namespace NewsWeb.Repositories
         Task<Category> AddCategoryAsync(Category category);
         Task<Category> UpdateCategoryAsync(Category categoryId);
         Task DeleteCategoryAsync(Guid categoryId);
+        Task<Category> GetCategoryByNewsCategoryId(string newCategoryName);
     }
 }

@@ -53,6 +53,10 @@ namespace NewsWeb.Repositories.Repos
         public Task<Category> GetCategoryAsync(Guid categoryId) =>
             _dbContext.Categories.FirstOrDefaultAsync(p => p.Id == categoryId);
 
+        public Task<Category> GetCategoryByNewsCategoryId(string newCategoryName)
+        {
+            return Task.FromResult(_dbContext.Categories.FirstOrDefault(p => p.Name == newCategoryName));
+        }
 
         public Task<Category> UpdateCategoryAsync(Category categoryId)
         {

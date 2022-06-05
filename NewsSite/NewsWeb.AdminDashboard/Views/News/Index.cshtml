@@ -1,6 +1,6 @@
 ﻿@{
 }
-@model List<News>
+@model List<NewsIndexViewModel>
 
  <div class="row blok mt-5">
         <div class="col-xs-11">
@@ -40,7 +40,7 @@
                             </td>
                             <td>@item.CreatedTime.Date</td>
                             <td>@item.NumberOfViewers</td> 
-                            <td>@item.CategoryId</td> 
+                            <td>@item.CategoryName</td> 
                             <td>
                                   @{
                                     string textoflink = item.Links;
