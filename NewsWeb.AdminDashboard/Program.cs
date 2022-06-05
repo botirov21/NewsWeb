@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NewsWeb.AdminDashboard.Service;
 using NewsWeb.Data;
 using NewsWeb.Repositories;
 using NewsWeb.Repositories.Interfaces;
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<ICategoryInterface, CategoryRepo>();
 builder.Services.AddScoped<ILinksInterface, LinksRepo>();
 builder.Services.AddScoped<INewsInterface, NewsRepo>();
+builder.Services.AddScoped<ISaveDeleteInterface, SaveDeleteRepo>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

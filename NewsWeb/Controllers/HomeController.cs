@@ -26,7 +26,7 @@ namespace NewsWeb.Controllers
             {
                 IndexViewModel viewModel = new IndexViewModel()
                 {
-                    Categories = await categoryInterface.GetCategoriesAsync(),
+                    Categories = await categoryInterface.GetAllCategoriesAsync(),
                     Top1 = list[0],
                     Top4 = list.GetRange(1, 3).ToList()
                 };
@@ -48,7 +48,7 @@ namespace NewsWeb.Controllers
 
         public async Task<IActionResult> Categori()
         {
-            var list = await categoryInterface.GetCategoriesAsync();
+            var list = await categoryInterface.GetAllCategoriesAsync();
             var newsList = await newsInterface.GetAllNewsAsync();
 
             CategoryViewModel viewModel = new CategoryViewModel()
@@ -62,7 +62,7 @@ namespace NewsWeb.Controllers
 
         public async Task<IActionResult> CategorySelect(Guid id)
         {
-            var list = await categoryInterface.GetCategoriesAsync();
+            var list = await categoryInterface.GetAllCategoriesAsync();
             var newsList = await newsInterface.GetAllNewsAsync();
 
             CategoryViewModel viewModel = new CategoryViewModel()

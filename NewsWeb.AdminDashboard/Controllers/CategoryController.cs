@@ -16,7 +16,7 @@ namespace NewsWeb.AdminDashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var list = await categoryinter.GetCategoriesAsync();
+            var list = await categoryinter.GetAllCategoriesAsync();
             return View(list);
         }
         [HttpGet]

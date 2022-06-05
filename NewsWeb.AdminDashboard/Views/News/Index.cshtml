@@ -1,2 +1,71 @@
 ﻿@{
 }
+@model List<News>
+
+ <div class="row blok mt-5">
+        <div class="col-xs-11">
+            <div class="box data-table">
+                <div class="box-header position-relative table-header mt-2">
+                    <div class="d-flex justify-content-between mt-3 mx-4 com-header">
+                        <h3>Kurslar</h3>
+                        <a asp-controller="news" asp-action="add">
+                            <span class="btn btn-success"><i class="las la-plus"></i>Yangi qo'shish</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="jadval box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Title</th>
+                            <th>CreatedTime</th>
+                            <th>NumberOfViewers</th>
+                            <th>CategoryName</th>
+                            <th>Links</th>
+                            <th>Images</th>
+                            <th>Body</th>
+                            <th style="text-align:center;">Action</th>
+                        </tr>
+                    @foreach(var item in Model)
+                    {
+                     <tr>
+                            <td>@item.Title.Substring(0,20)</td>
+                            <td>@item.CreatedTime.Date</td>
+                            <td>@item.NumberOfViewers</td> 
+                            <td>@item.CategoryId</td> 
+                            <td>
+                                  @{
+                                    string textoflink = item.Links;
+                                    if (textoflink.Length > 15)
+                                    {
+                                      textoflink = item.Links.Substring(0, 15);
+                                    }
+                                }
+                                @textoflink...
+                            </td> 
+                            <td><img src="@item.Images" asp-append-version="true" style="width: 50px;"/></td>
+                            <td>
+                                @{
+                                    string text = item.Body;
+                                    if (text.Length > 15)
+                                    {
+                                       text = item.Body.Substring(0, 15);
+                                    }
+                                }
+                                @text...
+                            </td>
+                            
+                            <td class="cell">
+                                <a asp-controller="" asp-action="" asp-route-id="@item.Id">
+                                    <span class="btn btn-success">Tahrirlash</span>
+                                </a>
+                                 <a asp-controller="" asp-action="delete" asp-route-id="@item.Id"
+                                    onclick="return confirm('Rostdan ham o\'chirmoqchisiz?');" class="btn btn-danger">O'chirish
+                                </a>                      
+                            </td>
+                    </tr>   
+                    }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
