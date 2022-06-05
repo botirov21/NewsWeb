@@ -20,16 +20,36 @@ namespace NewsWeb.Controllers
         public async Task<IActionResult> Index()
         {
             var list = (await newsInterface.GetAllNewsAsync()).OrderByDescending(n => n.NumberOfViewers).ToList();
-            
-            
+            var list2 = (await newsInterface.GetAllNewsAsync()).OrderByDescending(n => n.CreatedTime).ToList();
+
+
             if (list.Count >= 0)
             {
                 IndexViewModel viewModel = new IndexViewModel()
                 {
                     Categories = await categoryInterface.GetAllCategoriesAsync(),
                     Top1 = list[0],
-                    Top4 = list.GetRange(1, 3).ToList()
+                    Top4 = null,
+                    Top9 = null,
+                    Weekly5 = list2.GetRange(0, 5),
                 };
+
+                if (list.Count > 1)
+                {
+                    viewModel.Top4 = list.GetRange(1, 3).ToList();
+                }
+
+                if (list.Count > 4)
+                {
+                    if (list.Count < 10)
+                    {
+                        viewModel.Top9 = list.GetRange(4, list.Count-4).ToList();
+                    }
+                    else
+                    {
+                        viewModel.Top9 = list.GetRange(4, 8).ToList();
+                    }
+                }
 
                 return View(viewModel);
             }
