@@ -13,6 +13,7 @@ namespace NewsWeb.Repositories.Interfaces
 
         Task<PagedList<News>> GetNews(QueryStringParameters parameters);
         Task<List<News>> GetAllNewsAsync();
+        Task<News> GetCategoryNameById(string catagoryName);
         Task<News> GetNewsAsync(Guid newsId);
         Task<News> AddNewsAsync(News news);
         Task<News> UpdateNewsAsync(News news);

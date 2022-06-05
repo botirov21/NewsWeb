@@ -39,6 +39,16 @@ namespace NewsWeb.Repositories.Repos
         public Task<List<News>> GetAllNewsAsync() =>
             _dbContext.News.ToListAsync();
 
+        public Task<News> GetCategoryNameById(Guid catagoryId)
+        {
+            return Task.FromResult(_dbContext.News.FirstOrDefault(i => i.Id == catagoryId ));
+        }
+
+        public Task<News> GetCategoryNameById(string catagoryName)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<PagedList<News>> GetNews(QueryStringParameters parameters)
         {
             return Task.FromResult(PagedList<News>.ToPagedList(_dbContext.News, parameters.PageNumber, parameters.PageSize));

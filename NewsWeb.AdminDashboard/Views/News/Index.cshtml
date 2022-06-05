@@ -28,7 +28,16 @@
                     @foreach(var item in Model)
                     {
                      <tr>
-                            <td>@item.Title.Substring(0,20)</td>
+                            <td>
+                                   @{
+                                    string textofTitle = item.Title;
+                                    if (textofTitle.Length > 15)
+                                    {
+                                      textofTitle = item.Title.Substring(0, 20);
+                                    }
+                                }
+                                @textofTitle...
+                            </td>
                             <td>@item.CreatedTime.Date</td>
                             <td>@item.NumberOfViewers</td> 
                             <td>@item.CategoryId</td> 

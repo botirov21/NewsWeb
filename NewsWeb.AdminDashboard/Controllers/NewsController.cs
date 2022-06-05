@@ -22,11 +22,17 @@ namespace NewsWeb.AdminDashboard.Controllers
             this.saveDeleteInterface = saveDeleteInterface;
             this.categoryInterface = categoryInterface;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(NewsIndexViewModel v)
         {
-            var item = await newInterface.GetAllNewsAsync();
+           var categoryName = categoryInterface.GetAllCategoriesAsync();
+            var newsForCategory = newInterface.GetAllNewsAsync();
+            Category category = new Category();
+            var item = await newInterface.GetCategoryNameById(category.Id);
+            NewsIndexViewModel newsIndexViewModel = new NewsIndexViewModel();
+            item.
+          
             return View(item);
-
+            
         }
         [HttpGet]
         public async Task<IActionResult> Add()
