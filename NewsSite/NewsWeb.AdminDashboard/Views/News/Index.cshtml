@@ -30,7 +30,7 @@
                      <tr>
                             <td>
                                    @{
-                                    string textofTitle = item.Title;
+                                    string textofTitle = item;
                                     if (textofTitle.Length > 15)
                                     {
                                       textofTitle = item.Title.Substring(0, 20);
@@ -38,7 +38,7 @@
                                 }
                                 @textofTitle...
                             </td>
-                            <td>@item.CreatedTime.Date</td>
+                            <td>@item.NewsForIndex.CreatedTime</td>
                             <td>@item.NumberOfViewers</td> 
                             <td>@item.CategoryName</td> 
                             <td>

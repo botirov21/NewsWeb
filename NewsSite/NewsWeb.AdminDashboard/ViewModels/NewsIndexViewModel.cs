@@ -10,9 +10,10 @@ namespace NewsWeb.AdminDashboard.ViewModels
         public string Images { get; set; }
         public DateTime CreatedTime { get; set; }
         public int NumberOfViewers { get; set; }
-        public Category Category { get; set; }
-        public string CategoryName { get; set; }
+        public Guid CategoryId { get; set; }
         public string Links { get; set; }
+        public List<News> NewsForIndex { get; set; }
+        public List<string> CategoryForIndex { get; set; }
 
     }
 }

@@ -24,19 +24,24 @@ namespace NewsWeb.AdminDashboard.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var newsForCategory = await newInterface.GetAllNewsAsync();
-            var item1 = await categoryInterface.GetAllCategoriesAsync();
-            Category category = new Category();
-            var item = newsForCategory.Where(p => p.CategoryId == category.Id);
-            //var item = await categoryInterface.GetCategoryByNewsCategoryId();
-            //Category category = new Category();
-            //var item = await newInterface.GetCategoryNameById(category.Id);
-            //NewsIndexViewModel newsIndexViewModel = new NewsIndexViewModel();
-            //item
+            var NewsList = await newInterface.GetAllNewsAsync();
+            var CategoryList = await categoryInterface.GetAllCategoriesAsync();
+            List<string> CategoryName = new List<string>();
+            foreach(var item in CategoryList)
+            {
+                CategoryName.Add(item.Name);
+            }
+            News news = new News();
+            List<NewsIndexViewModel> viewModels = new List<NewsIndexViewModel>();
+            foreach(var item2 in viewModels)
+            {
+                item2.CategoryForIndex = CategoryName;
+                item2.Title = news.Title;
+                item2.Body = news.Body;
+            }
 
 
-
-            return View(viewModel);
+            return View(viewModels);
             
         }
         [HttpGet]
