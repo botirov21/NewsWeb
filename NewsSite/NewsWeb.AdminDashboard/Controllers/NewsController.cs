@@ -22,51 +22,27 @@ namespace NewsWeb.AdminDashboard.Controllers
             this.saveDeleteInterface = saveDeleteInterface;
             this.categoryInterface = categoryInterface;
         }
+
         public async Task<IActionResult> Index()
         {
-            var NewsList = await newInterface.GetAllNewsAsync();
-            var CategoryList = await categoryInterface.GetAllCategoriesAsync();
-            List<string> CategoryName = new List<string>();
-            foreach(var item in CategoryList)
+            NewsIndexViewModel viewModels = new()
             {
-                CategoryName.Add(item.Name);
-            }
-            News news = new News();
-            List<NewsIndexViewModel> viewModels = new List<NewsIndexViewModel>();
-            foreach(var item2 in viewModels)
-            {
-                item2.CategoryForIndex = CategoryName;
-                item2.Title = news.Title;
-                item2.Body = news.Body;
-            }
+                NewsList = await newInterface.GetAllNewsAsync(),
+                Categories = await categoryInterface.GetAllCategoriesAsync()
+            };
 
-
-            return View(viewModels);
-            
+            return View(viewModels);            
         }
+
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            List<string> Categories = new List<string>();
-            var list = await categoryInterface.GetAllCategoriesAsync();
-            foreach (var item in list)
-            {
-                Categories.Add(item.Name);
-            }
-
-            AddNewsViewModel viewModel = new AddNewsViewModel()
-            {
-                Category = Categories
-            };
-
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(AddNewsViewModel v)
         {
-            var item = await categoryInterface.GetAllCategoriesAsync();
-            var category = item.FirstOrDefault(t => t.Name == v.CategoryName);
             News news = new News()
             {
                 Id=Guid.NewGuid(),
@@ -75,8 +51,8 @@ namespace NewsWeb.AdminDashboard.Controllers
                 Images=saveDeleteInterface.SaveImage(v.Images),
                 CreatedTime=DateTime.Now,
                 NumberOfViewers=0,
-                CategoryId=category.Id,
-                Links=v.Links
+                CategoryId=v.CategoryId,
+                Links = ""
             };
             await newInterface.AddNewsAsync(news);
             return RedirectToAction("Index");

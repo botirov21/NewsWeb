@@ -47,7 +47,7 @@ namespace NewsWeb.Controllers
                     }
                     else
                     {
-                        viewModel.Top9 = list.GetRange(4, 8).ToList();
+                        viewModel.Top9 = list.GetRange(4, 5).ToList();
                     }
                 }
 
