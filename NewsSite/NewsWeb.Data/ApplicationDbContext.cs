@@ -20,7 +20,7 @@ namespace NewsWeb.Data
                 .HasData(
                         new Category()
                         {
-                            Id = Guid.NewGuid(),
+                            Id = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
                             Name = "IT"
                         },
                         new Category()
@@ -35,6 +35,109 @@ namespace NewsWeb.Data
                         }
                     );
 
+            modelBuilder.Entity<News>()
+                .HasData(
+                        new News()
+                        {
+                            Id = Guid.NewGuid(),
+                            CategoryId = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
+                            Title = "Today is a good day!",
+                            Body = "❗️Бирор егуликка нисбатан кучли хоҳиш организмда қайсидир модда етишмаслигидан дарак беради.",
+                            CreatedTime = DateTime.Now,
+                            Images = "trending/trending_bottom1.jpg",
+                            Links = "",
+                            NumberOfViewers = 12
+                        },
+                        new News()
+                        {
+                            Id = Guid.NewGuid(),
+                            CategoryId = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
+                            Title = "Today is a good day!",
+                            Body = "❗️Бирор егуликка нисбатан кучли хоҳиш организмда қайсидир модда етишмаслигидан дарак беради.",
+                            CreatedTime = DateTime.Now,
+                            Images = "trending/trending_bottom1.jpg",
+                            Links = "",
+                            NumberOfViewers = 12
+                        },
+                        new News()
+                        {
+                            Id = Guid.NewGuid(),
+                            CategoryId = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
+                            Title = "Today is a good day!",
+                            Body = "❗️Бирор егуликка нисбатан кучли хоҳиш организмда қайсидир модда етишмаслигидан дарак беради.",
+                            CreatedTime = DateTime.Now,
+                            Images = "trending/trending_bottom1.jpg",
+                            Links = "",
+                            NumberOfViewers = 12
+                        },
+                        new News()
+                        {
+                            Id = Guid.NewGuid(),
+                            CategoryId = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
+                            Title = "Today is a good day!",
+                            Body = "❗️Бирор егуликка нисбатан кучли хоҳиш организмда қайсидир модда етишмаслигидан дарак беради.",
+                            CreatedTime = DateTime.Now,
+                            Images = "trending/trending_bottom1.jpg",
+                            Links = "",
+                            NumberOfViewers = 12
+                        },
+                        new News()
+                        {
+                            Id = Guid.NewGuid(),
+                            CategoryId = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
+                            Title = "Today is a good day!",
+                            Body = "❗️Бирор егуликка нисбатан кучли хоҳиш организмда қайсидир модда етишмаслигидан дарак беради.",
+                            CreatedTime = DateTime.Now,
+                            Images = "trending/trending_bottom1.jpg",
+                            Links = "",
+                            NumberOfViewers = 12
+                        },
+                        new News()
+                        {
+                            Id = Guid.NewGuid(),
+                            CategoryId = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
+                            Title = "Today is a good day!",
+                            Body = "❗️Бирор егуликка нисбатан кучли хоҳиш организмда қайсидир модда етишмаслигидан дарак беради.",
+                            CreatedTime = DateTime.Now,
+                            Images = "trending/trending_bottom1.jpg",
+                            Links = "",
+                            NumberOfViewers = 12
+                        },
+                        new News()
+                        {
+                            Id = Guid.NewGuid(),
+                            CategoryId = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
+                            Title = "Today is a good day!",
+                            Body = "❗️Бирор егуликка нисбатан кучли хоҳиш организмда қайсидир модда етишмаслигидан дарак беради.",
+                            CreatedTime = DateTime.Now,
+                            Images = "trending/trending_bottom1.jpg",
+                            Links = "",
+                            NumberOfViewers = 12
+                        },
+                        new News()
+                        {
+                            Id = Guid.NewGuid(),
+                            CategoryId = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
+                            Title = "Today is a good day!",
+                            Body = "❗️Бирор егуликка нисбатан кучли хоҳиш организмда қайсидир модда етишмаслигидан дарак беради.",
+                            CreatedTime = DateTime.Now,
+                            Images = "trending/trending_bottom1.jpg",
+                            Links = "",
+                            NumberOfViewers = 12
+                        },
+                        new News()
+                        {
+                            Id = Guid.NewGuid(),
+                            CategoryId = Guid.Parse("6ff3bb66-b37e-4b73-9472-b8c35a4f5881"),
+                            Title = "Today is a good day!",
+                            Body = "❗️Бирор егуликка нисбатан кучли хоҳиш организмда қайсидир модда етишмаслигидан дарак беради.",
+                            CreatedTime = DateTime.Now,
+                            Images = "trending/trending_bottom1.jpg",
+                            Links = "",
+                            NumberOfViewers = 12
+                        }
+
+                );
         }
     }
 }

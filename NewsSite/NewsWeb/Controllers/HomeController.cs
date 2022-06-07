@@ -25,7 +25,7 @@ namespace NewsWeb.Controllers
 
             if (list.Count >= 0)
             {
-                IndexViewModel viewModel = new IndexViewModel()
+                IndexViewModel viewModel = new()
                 {
                     Categories = await categoryInterface.GetAllCategoriesAsync(),
                     Top1 = list[0],
@@ -43,7 +43,7 @@ namespace NewsWeb.Controllers
                 {
                     if (list.Count < 10)
                     {
-                        viewModel.Top9 = list.GetRange(4, list.Count-4).ToList();
+                        viewModel.Top9 = list.GetRange(4, list.Count - 4).ToList();
                     }
                     else
                     {
@@ -71,7 +71,7 @@ namespace NewsWeb.Controllers
             var list = await categoryInterface.GetAllCategoriesAsync();
             var newsList = await newsInterface.GetAllNewsAsync();
 
-            CategoryViewModel viewModel = new CategoryViewModel()
+            CategoryViewModel viewModel = new()
             {
                 News = newsList.Take(4).ToList(),
                 Categories = list
@@ -85,9 +85,23 @@ namespace NewsWeb.Controllers
             var list = await categoryInterface.GetAllCategoriesAsync();
             var newsList = await newsInterface.GetAllNewsAsync();
 
-            CategoryViewModel viewModel = new CategoryViewModel()
+            CategoryViewModel viewModel = new()
             {
                 News = newsList.Where(n => n.CategoryId == id).ToList(),
+                Categories = list
+            };
+
+            return View("Categori", viewModel);
+        }
+
+        public async Task<IActionResult> AllCategory()
+        {
+            var list = await categoryInterface.GetAllCategoriesAsync();
+            var newsList = await newsInterface.GetAllNewsAsync();
+
+            CategoryViewModel viewModel = new()
+            {
+                News = newsList,
                 Categories = list
             };
 

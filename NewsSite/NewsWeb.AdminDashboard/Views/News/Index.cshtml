@@ -30,7 +30,7 @@
                      <tr>
                             <td>
                                    @{
-                                    string textofTitle = item;
+                                    string textofTitle = item.Images;
                                     if (textofTitle.Length > 15)
                                     {
                                       textofTitle = item.Title.Substring(0, 20);
@@ -38,9 +38,8 @@
                                 }
                                 @textofTitle...
                             </td>
-                            <td>@item.NewsForIndex.CreatedTime</td>
-                            <td>@item.NumberOfViewers</td> 
-                            <td>@item.CategoryName</td> 
+                            <td>@item.NewsForIndex</td>
+                            <td>@item.NumberOfViewers</td>
                             <td>
                                   @{
                                     string textoflink = item.Links;
