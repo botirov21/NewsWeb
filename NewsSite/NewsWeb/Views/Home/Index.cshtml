@@ -19,37 +19,43 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <!-- Trending Top -->
-                    <div class="trending-top mb-30">
-                        <div class="trend-top-img">
-                            <img src="~/img/@Model.Top1.Images" alt="">
-                            <div class="trend-top-cap">
-                                <span>@Model.Categories.FirstOrDefault(c => c.Id == Model.Top1.CategoryId).Name</span>
-                                <h2><a asp-controller="home" asp-action="details" asp-route-id="@Model.Top1.Id">@Model.Top1.Title</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Trending Bottom -->
-                    <div class="trending-bottom">
-                        <div class="row">
-                            @foreach (var item in Model.Top4)
-                            {
-                               <div class="col-lg-4">
-                                    <div class="single-bottom mb-35">
-                                    <div class="trend-bottom-img mb-30">
-                                        <img src="~/img/@item.Images" alt="">
-                                    </div>
-                                    <div class="trend-bottom-cap">
-                                        <span class="color1">@Model.Categories.FirstOrDefault(c => c.Id == item.CategoryId).Name</span>
-                                        <h4><a href="~/details.html">@item.Title</a></h4>
-                                    </div>
-                                    </div> 
+                   @if (Model.Top1 is not null)
+                    {
+                         <!-- Trending Top -->
+                        <div class="trending-top mb-30">
+                            <div class="trend-top-img">
+                                <img src="~/img/@Model.Top1.Images" alt="">
+                                <div class="trend-top-cap">
+                                    <span>@Model.Categories.FirstOrDefault(c => c.Id == Model.Top1.CategoryId).Name</span>
+                                    <h2><a asp-controller="home" asp-action="details" asp-route-id="@Model.Top1.Id">@Model.Top1.Title</a></h2>
                                 </div>
-                            }
                             </div>
                         </div>
-                </div>
-                <!-- Riht content -->
+                    }
+                    @if (Model.Top4 is not null)
+                    {
+                        <!-- Trending Bottom -->
+                            <div class="trending-bottom">
+                                <div class="row">
+                                    @foreach (var item in Model.Top4)
+                                    {
+                                       <div class="col-lg-4">
+                                            <div class="single-bottom mb-35">
+                                            <div class="trend-bottom-img mb-30">
+                                                <img src="~/img/@item.Images" alt="">
+                                            </div>
+                                            <div class="trend-bottom-cap">
+                                                <span class="color1">@Model.Categories.FirstOrDefault(c => c.Id == item.CategoryId).Name</span>
+                                                <h4><a asp-controller="home" asp-action="details" asp-route-id="@item.Id">@item.Title</a></h4>
+                                            </div>
+                                            </div> 
+                                        </div>
+                                    }
+                                    </div>
+                                </div>
+                    }
+                        </div>
+                    <!-- Riht content -->
                 <div class="col-lg-4">
                     @if (Model.Top9 is not null)
                         {
@@ -61,7 +67,7 @@
                                     </div>
                                     <div class="trand-right-cap">
                                         <span class="color1">@Model.Categories.FirstOrDefault(c => c.Id == item.CategoryId).Name</span>
-                                        <h4><a href="~/details.html">@item.Title</a></h4>
+                                        <h4><a asp-controller="home" asp-action="details" asp-route-id="@item.Id">@item.Title</a></h4>
                                     </div>
                                 </div>
                             }
@@ -119,7 +125,7 @@
                                     }
                                     @month @day, @year
                                     </p>
-                                    <h4><a href="~/#">@item.Title</a></h4>
+                                    <h4><a asp-controller="home" asp-action="details" asp-route-id="@item.Id">@item.Title</a></h4>
                                 </div>
                             </div>
                         }

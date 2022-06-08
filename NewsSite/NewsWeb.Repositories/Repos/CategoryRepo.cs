@@ -29,7 +29,9 @@ namespace NewsWeb.Repositories.Repos
 
         public Task DeleteCategoryAsync(Guid categoryId)
         {
+#pragma warning disable CS8604 // Possible null reference argument for parameter 'entity' in 'EntityEntry<Category> DbSet<Category>.Remove(Category entity)'.
             _dbContext.Categories.Remove(_dbContext.Categories.FirstOrDefault(p => p.Id == categoryId));
+#pragma warning restore CS8604 // Possible null reference argument for parameter 'entity' in 'EntityEntry<Category> DbSet<Category>.Remove(Category entity)'.
             _dbContext.SaveChanges();
             return Task.FromResult(0);
         }
@@ -51,11 +53,15 @@ namespace NewsWeb.Repositories.Repos
         }
           
         public Task<Category> GetCategoryAsync(Guid categoryId) =>
+#pragma warning disable CS8619 // Nullability of reference types in value of type 'Task<Category?>' doesn't match target type 'Task<Category>'.
             _dbContext.Categories.FirstOrDefaultAsync(p => p.Id == categoryId);
+#pragma warning restore CS8619 // Nullability of reference types in value of type 'Task<Category?>' doesn't match target type 'Task<Category>'.
 
         public Task<Category> GetCategoryByNewsCategoryId(string newCategoryName)
         {
+#pragma warning disable CS8619 // Nullability of reference types in value of type 'Task<Category?>' doesn't match target type 'Task<Category>'.
             return Task.FromResult(_dbContext.Categories.FirstOrDefault(p => p.Name == newCategoryName));
+#pragma warning restore CS8619 // Nullability of reference types in value of type 'Task<Category?>' doesn't match target type 'Task<Category>'.
         }
 
         public Task<Category> UpdateCategoryAsync(Category categoryId)

@@ -10,11 +10,10 @@ namespace NewsWeb.Repositories.Interfaces
 {
     public interface INewsInterface
     {
-
+        Task NewViewer(Guid newsId);
+        Task<List<News>> SearchByText(string text);
         Task<PagedList<News>> GetNews(QueryStringParameters parameters);
-        News GetNews();
         Task<List<News>> GetAllNewsAsync();
-        Task<News> GetCategoryNameById(string catagoryName);
         Task<News> GetNewsAsync(Guid newsId);
         Task<News> AddNewsAsync(News news);
         Task<News> UpdateNewsAsync(News news);

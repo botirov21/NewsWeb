@@ -23,7 +23,7 @@ namespace NewsWeb.Controllers
             var list2 = (await newsInterface.GetAllNewsAsync()).OrderByDescending(n => n.CreatedTime).ToList();
 
 
-            if (list.Count >= 0)
+            if (list.Count > 0)
             {
                 IndexViewModel viewModel = new()
                 {
@@ -60,10 +60,6 @@ namespace NewsWeb.Controllers
         {
             return View();
 
-        }
-        public IActionResult Blog()
-        {
-            return View();
         }
 
         public async Task<IActionResult> Categori()
@@ -113,31 +109,21 @@ namespace NewsWeb.Controllers
             return View();
 
         }
-        public IActionResult Details(Guid id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            var news = newsInterface.GetNewsAsync(id);
+            var news = await newsInterface.GetNewsAsync(id);
+            await newsInterface.NewViewer(id);
             return View(news);
-
         }
-        public IActionResult Elements()
+        public async Task<IActionResult> Search_News(string text)
         {
-            return View();
+            if (!string.IsNullOrEmpty(text))
+            {
+                var news = await newsInterface.SearchByText(text);
+                return View(news);
+            }
 
-        }
-        public IActionResult Latest_news()
-        {
-            return View();
-
-        }
-        public IActionResult Main()
-        {
-            return View();
-
-        }
-        public IActionResult Single_blog()
-        {
-            return View();
-
+            return RedirectToAction("Index");
         }
     }
 }

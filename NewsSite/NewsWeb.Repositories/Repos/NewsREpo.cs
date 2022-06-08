@@ -3,11 +3,6 @@ using NewsWeb.Data;
 using NewsWeb.Models;
 using NewsWeb.Repositories.Interfaces;
 using POS_System.Domains.Pagination;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewsWeb.Repositories.Repos
 {
@@ -44,23 +39,28 @@ namespace NewsWeb.Repositories.Repos
             return Task.FromResult(_dbContext.News.FirstOrDefault(i => i.CategoryId == catagoryId));
         }
 
-        public Task<News> GetCategoryNameById(string catagoryName)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<PagedList<News>> GetNews(QueryStringParameters parameters)
         {
             return Task.FromResult(PagedList<News>.ToPagedList(_dbContext.News, parameters.PageNumber, parameters.PageSize));
         }
 
-        public News GetNews()
-        {
-            throw new Exception();
-        }
-
         public Task<News> GetNewsAsync(Guid newsId) =>
             _dbContext.News.FirstOrDefaultAsync(p => p.Id == newsId);
+
+        public Task NewViewer(Guid newsId)
+        {
+            var news = _dbContext.News.FirstOrDefault(n => n.Id == newsId);
+            news.NumberOfViewers++;
+            _dbContext.SaveChanges();
+            return Task.CompletedTask;
+        }
+
+        public Task<List<News>> SearchByText(string text)
+        {
+            var list = _dbContext.News.Where(n => n.Title.ToLower().Contains(text.ToLower()) || n.Body.ToLower().Contains(text.ToLower())).ToList();
+
+            return Task.FromResult(list);
+        }
 
         public Task<News> UpdateNewsAsync(News newsId)
         {

@@ -1,0 +1,70 @@
+﻿@using NewsWeb.Repositories
+@{
+    ViewData["Title"] = "Latest_news Page";
+}
+@model List<News>
+@inject ICategoryInterface categoryInterface
+
+@if (Model.Count > 0)
+{
+    <!--   Weekly2-News start -->
+    <div class="weekly2-news-area  weekly2-pading gray-bg">
+    <div class="container">
+        <div class="weekly2-wrapper">
+            <!-- section Tittle -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle mb-30">
+                        <h3>Search results</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="weekly2-news-active dot-style d-flex dot-style">
+                        @foreach (var item in Model)
+                        {
+                            <div class="weekly2-single">
+                                <div class="weekly2-img">
+                                    <img style="width: 200px; height: 150px;" src="~/img/@item.Images" alt="">
+                                </div>
+                                <div class="weekly2-caption">
+                                   <p>
+                                        @{
+                                        string day = item.CreatedTime.Day.ToString();
+                                        string month = item.CreatedTime.Month switch
+                                        {
+                                            1 => "January",
+                                            2 => "February",
+                                            3 => "March",
+                                            4 => "April",
+                                            5 => "May",
+                                            6 => "June",
+                                            7 => "July",
+                                            8 => "August",
+                                            9 => "September",
+                                            10 => "October",
+                                            11 => "November",
+                                            12 => "December",
+                                            _ => "Wrong month number"
+                                        };
+                                        string year = item.CreatedTime.Year.ToString();
+                                    }
+                                    @month @day, @year
+                                    </p>
+                                    <h4><a asp-controller="home" asp-action="details" asp-route-id="@item.Id">@item.Title</a></h4>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>           
+    <!-- End Weekly-News -->
+}
+else
+{
+    <h3 class="m-5 p-5">No any results</h3>
+}
