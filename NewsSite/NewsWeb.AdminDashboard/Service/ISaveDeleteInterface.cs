@@ -4,5 +4,6 @@
     {
         string SaveImage(IFormFile newFile);
 
+        void DeleteImage(Guid id);
     }
 }

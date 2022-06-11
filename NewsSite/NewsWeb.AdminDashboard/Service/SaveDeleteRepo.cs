@@ -1,12 +1,37 @@
-﻿namespace NewsWeb.AdminDashboard.Service
+﻿using NewsWeb.Data;
+using NewsWeb.Models;
+
+namespace NewsWeb.AdminDashboard.Service
 {
     public class SaveDeleteRepo : ISaveDeleteInterface
     {
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly ApplicationDbContext dbContext;
 
-        public SaveDeleteRepo(IWebHostEnvironment webHostEnvironment)
+   
+        public SaveDeleteRepo(IWebHostEnvironment webHostEnvironment,
+            ApplicationDbContext dbContext)
         {
             this.webHostEnvironment = webHostEnvironment;
+            this.dbContext = dbContext;
+        }
+
+        public void DeleteImage(Guid id)
+        {
+            News news = dbContext.News.FirstOrDefault(p => p.Id == id);
+            if (news.Images is not null)
+            {
+                string uplodFolder = Path.Combine(webHostEnvironment.WebRootPath, "Images");
+                string filePath = Path.Combine(uplodFolder, news.Images);
+                FileInfo fileInfo = new FileInfo(filePath);
+                if (fileInfo.Exists)
+                {
+                    fileInfo.Delete();
+                }
+            }
+
+            dbContext.News.Remove(news);
+            dbContext.SaveChanges();
         }
         public string SaveImage(IFormFile newFile)
         {

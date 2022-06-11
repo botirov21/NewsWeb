@@ -16,7 +16,7 @@ builder.Services.AddScoped<ICategoryInterface, CategoryRepo>();
 builder.Services.AddScoped<ILinksInterface, LinksRepo>();
 builder.Services.AddScoped<INewsInterface, NewsRepo>();
 builder.Services.AddScoped<ISaveDeleteInterface, SaveDeleteRepo>();
-
+ 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
