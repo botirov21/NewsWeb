@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\NewsSite"
+    "\\NewsSite",
+    "\\NewsSite\\NewsWeb.AdminDashboard",
+    "\\NewsSite\\NewsWeb.AdminDashboard\\Controllers"
   ],
-  "SelectedNode": "\\NewsSite\\NewsWeb.sln",
+  "SelectedNode": "\\NewsSite\\NewsWeb.AdminDashboard\\Controllers\\NewsController.cs",
   "PreviewInSolutionExplorer": false
 }
