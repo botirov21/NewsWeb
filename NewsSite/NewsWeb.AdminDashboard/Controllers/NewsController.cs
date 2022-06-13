@@ -77,10 +77,16 @@ namespace NewsWeb.AdminDashboard.Controllers
 
         public async Task<IActionResult> Delete(Guid id)
         {
-            var model = await newInterface.GetNewsAsync(id);
-            saveDeleteInterface.DeleteImage(model.Id);
+            var item = await newInterface.GetNewsAsync(id);
+            string img = Path.Combine(environment.WebRootPath, "images", item.Images);
+            FileInfo info = new FileInfo(img);
+            if (info != null)
+            {
+                System.IO.File.Delete(img);
+            }
+            await newInterface.DeleteNewsAsync(id);
+            return RedirectToAction("index");
 
-            return RedirectToAction("Index");
         }
     }
 }
