@@ -31,7 +31,7 @@ namespace NewsWeb.Controllers
                     Top1 = list[0],
                     Top4 = null,
                     Top9 = null,
-                    Weekly5 = list2.GetRange(0, 5),
+                    Weekly5 = list2.Count > 4 ? list2.GetRange(0, 5) : list2,
                 };
 
                 if (list.Count > 1)

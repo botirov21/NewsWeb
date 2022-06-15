@@ -41,7 +41,7 @@ namespace NewsWeb.AdminDashboard.ViewModels
                 Title = v.Title,
                 Body = v.Body,
                 Images = v.Images,
-                CreatedTime = v.CreatedTime,
+                CreatedTime = DateTime.Now,
                 CategoryId = v.CategoryId,
                 Links = v.Links,
              

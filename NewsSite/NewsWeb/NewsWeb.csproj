@@ -31,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NewsWeb.AdminDashboard\NewsWeb.AdminDashboard.csproj" />
     <ProjectReference Include="..\NewsWeb.Data\NewsWeb.Data.csproj" />
     <ProjectReference Include="..\NewsWeb.Repositories\NewsWeb.Repositories.csproj" />
   </ItemGroup>

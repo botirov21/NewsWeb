@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using NewsWeb.AdminDashboard.Services;
 using NewsWeb.Data;
 using NewsWeb.Repositories;
 using NewsWeb.Repositories.Interfaces;
@@ -12,7 +11,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<ICategoryInterface, CategoryRepo>();
 builder.Services.AddTransient<INewsInterface, NewsRepo>();
+<<<<<<< HEAD
 
+=======
+>>>>>>> a3642bf89e6705a263430bc109164849f7246e74
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
