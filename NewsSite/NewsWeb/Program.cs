@@ -12,7 +12,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<ICategoryInterface, CategoryRepo>();
 builder.Services.AddTransient<INewsInterface, NewsRepo>();
-builder.Services.AddTransient<IImageControllerInterface, NewsRepo>();
+
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
