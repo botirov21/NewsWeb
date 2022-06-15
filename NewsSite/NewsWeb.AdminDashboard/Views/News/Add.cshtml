@@ -28,6 +28,11 @@
                <option value="@item.Id">@item.Name</option>
            }
         </select>
+           <div class="form-group mx-4" style="padding: 10px; font-size: 18px;">
+            <label asp-for="Links"></label>
+            <textarea class="form-control" id="" asp-for="Links" rows="6"></textarea>
+        </div>
+
         <div class="button-group text-center my-5">
             <button type="submit" class="btn btn-success me-5" style=" width:200px; " >
                Save

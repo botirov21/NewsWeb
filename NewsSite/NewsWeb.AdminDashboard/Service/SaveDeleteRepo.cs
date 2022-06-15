@@ -47,6 +47,15 @@ namespace NewsWeb.AdminDashboard.Service
             }
 
             return uniqueName;
+
+        }
+       
+        public News UpdateNews(News news)
+        {
+            dbContext.News.Update(news);
+            dbContext.SaveChanges();
+
+            return news;
         }
     }
 }

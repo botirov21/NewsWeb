@@ -62,12 +62,13 @@ namespace NewsWeb.Repositories.Repos
             return Task.FromResult(list);
         }
 
-        public Task<News> UpdateNewsAsync(News newsId)
+        public Task<News> UpdateNews(News news)
         {
-
-            _dbContext.News.Update(newsId);
+            _dbContext.News.Update(news);
             _dbContext.SaveChanges();
-            return Task.FromResult(newsId);
+            return Task.FromResult(news);
         }
+
+
     }
 }

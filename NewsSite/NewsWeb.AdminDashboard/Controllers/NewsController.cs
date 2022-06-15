@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using NewsWeb.AdminDashboard.Service;
+using NewsWeb.AdminDashboard.Services;
 using NewsWeb.AdminDashboard.ViewModels;
 using NewsWeb.Models;
 using NewsWeb.Repositories;
@@ -17,16 +19,19 @@ namespace NewsWeb.AdminDashboard.Controllers
         private readonly ISaveDeleteInterface saveDeleteInterface;
         private readonly ICategoryInterface categoryInterface;
         private readonly IWebHostEnvironment environment;
+        private readonly IImageControllerInterface imageController;
 
         public NewsController( INewsInterface newInterface,
                                 ISaveDeleteInterface saveDeleteInterface,
                                 ICategoryInterface categoryInterface,
-                                IWebHostEnvironment environment)
+                                IWebHostEnvironment environment,
+                                IImageControllerInterface imageController )
         {
             this.newInterface = newInterface;
             this.saveDeleteInterface = saveDeleteInterface;
             this.categoryInterface = categoryInterface;
             this.environment = environment;
+            this.imageController = imageController;
         }
 
         public async Task<IActionResult> Index()
@@ -45,7 +50,7 @@ namespace NewsWeb.AdminDashboard.Controllers
         {
             return View();
         }
-
+       
         [HttpPost]
         public async Task<IActionResult> Add(AddNewsViewModel v)
         {
@@ -58,7 +63,7 @@ namespace NewsWeb.AdminDashboard.Controllers
                 CreatedTime=DateTime.Now,
                 NumberOfViewers=0,
                 CategoryId=v.CategoryId,
-                Links = ""
+                Links =v.Links
             };
             await newInterface.AddNewsAsync(news);
 
@@ -73,6 +78,31 @@ namespace NewsWeb.AdminDashboard.Controllers
             }
 
             return RedirectToAction("Index");            
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var item = await newInterface.GetNewsAsync(id);
+            return View((NewsEditViewModel)item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(NewsEditViewModel v)
+        {
+            if (v.NewImage is not null)
+            {
+                string img = Path.Combine(environment.WebRootPath, "Images", v.Images);
+                FileInfo info = new FileInfo(img);
+                if (info != null)
+                {
+                    System.IO.File.Delete(img);
+                }
+                imageController.SaveImage(v.NewImage);
+            }
+
+            await newInterface.UpdateNews((News)v);
+            return RedirectToAction("index");
         }
 
         public async Task<IActionResult> Delete(Guid id)

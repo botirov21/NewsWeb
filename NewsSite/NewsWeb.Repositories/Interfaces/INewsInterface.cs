@@ -16,7 +16,7 @@ namespace NewsWeb.Repositories.Interfaces
         Task<List<News>> GetAllNewsAsync();
         Task<News> GetNewsAsync(Guid newsId);
         Task<News> AddNewsAsync(News news);
-        Task<News> UpdateNewsAsync(News news);
+        Task<News> UpdateNews(News news);
         Task DeleteNewsAsync(Guid newsId);
     }
 }

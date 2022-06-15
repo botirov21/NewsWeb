@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NewsWeb.AdminDashboard.Services;
 using NewsWeb.Data;
 using NewsWeb.Repositories;
 using NewsWeb.Repositories.Interfaces;
@@ -11,6 +12,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<ICategoryInterface, CategoryRepo>();
 builder.Services.AddTransient<INewsInterface, NewsRepo>();
+builder.Services.AddTransient<IImageControllerInterface, NewsRepo>();
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));
