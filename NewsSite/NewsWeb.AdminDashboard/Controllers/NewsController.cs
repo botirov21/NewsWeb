@@ -98,7 +98,7 @@ namespace NewsWeb.AdminDashboard.Controllers
                 {
                     System.IO.File.Delete(img);
                 }
-                imageController.SaveImage(v.NewImage);
+                v.Images = imageController.SaveImage(v.NewImage);
             }
 
             await newInterface.UpdateNews((News)v);
