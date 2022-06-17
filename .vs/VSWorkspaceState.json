@@ -1,7 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NewsSite",
+    "\\NewsSite\\NewsWeb",
+    "\\NewsSite\\NewsWeb.AdminDashboard",
+    "\\NewsSite\\NewsWeb.AdminDashboard\\Controllers",
+    "\\NewsSite\\NewsWeb.AdminDashboard\\Views",
+    "\\NewsSite\\NewsWeb.AdminDashboard\\Views\\News",
+    "\\NewsSite\\NewsWeb\\Views",
+    "\\NewsSite\\NewsWeb\\Views\\Shared"
   ],
-  "SelectedNode": "\\NewsWeb.sln",
+  "SelectedNode": "\\NewsSite\\NewsWeb.sln",
   "PreviewInSolutionExplorer": false
 }

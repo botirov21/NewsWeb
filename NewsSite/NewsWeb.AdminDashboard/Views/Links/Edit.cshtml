@@ -1,0 +1,58 @@
+﻿@using NewsWeb.Repositories
+@{
+}
+@inject ICategoryInterface categoryInterface
+@model NewsEditViewModel
+
+<div class="box-header position-relative table-header mt-2">
+        <div class="d-flex justify-content-between mt-3 com-header">
+            <h3>Yangi kurs qo'shish</h3>
+        </div>
+    </div>
+    <form class="mx-4" asp-controller="news" asp-action="edit" enctype="multipart/form-data" method="post">
+        <div class="form-group mx-4" style="padding: 10px; font-size: 18px;">
+            <label asp-for="Title">Title</label>
+            <input asp-for="Title" type="text" class="form-control" id="title" value="@Model.Title">
+        </div>
+        <div class="form-group mx-4" style="padding: 10px; font-size: 18px;">
+            <label asp-for="Body"></label>
+            <textarea class="form-control" id="" asp-for="Body" rows="6"> @Model.Body</textarea>
+        </div>
+        <input asp-for="Images" type="hidden" value="@Model.Images"/>
+        <div class="container mx-3">
+            <img src="~/images/@Model.Images" asp-append-version="true" alt="">
+        </div>
+
+        <div class="input-group mx-4" style="padding: 10px; font-size: 18px;">
+            <input type="file" asp-for="NewImage" accept="image/*" class="form-control" id="inputGroupFile02">
+        </div>
+
+
+        <select asp-for="CategoryId" class="form-select mx-5" asp-for=" CategoryName"  style="padding: 10px; font-size: 18px;" aria-label="Default select example">
+          
+            @foreach (var item in await categoryInterface.GetAllCategoriesAsync())
+            {  
+                if (item.Id == Model.CategoryId)
+                {
+                    <option selected value="@item.Id">@item.Name</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+           <div class="form-group mx-4" style="padding: 10px; font-size: 18px;">
+            <label asp-for="Links"></label>
+            <textarea class="form-control" id="" asp-for="Links" rows="6"></textarea>
+        </div>
+
+        <div class="button-group text-center my-5">
+            <button type="submit" class="btn btn-success me-5" style=" width:200px; " >
+               Save
+            </button>
+            <a asp-controller="news" asp-action="index">
+                <span class="btn btn-info"  style=" width:200px;"> Cancel</span>
+            </a>
+         </div>
+    </form>
