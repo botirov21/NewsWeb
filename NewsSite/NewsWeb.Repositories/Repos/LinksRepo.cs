@@ -31,9 +31,7 @@ namespace NewsWeb.Repositories.Repos
 
         public Task DeleteLinksAsync(Guid linksId)
         {
-#pragma warning disable CS8604 // Possible null reference argument for parameter 'entity' in 'EntityEntry<Links> DbSet<Links>.Remove(Links entity)'.
             _dbContext.Link.Remove(_dbContext.Link.FirstOrDefault(p => p.Id == linksId));
-#pragma warning restore CS8604 // Possible null reference argument for parameter 'entity' in 'EntityEntry<Links> DbSet<Links>.Remove(Links entity)'.
             _dbContext.SaveChanges();
             return Task.FromResult(0);
         }
@@ -48,9 +46,8 @@ namespace NewsWeb.Repositories.Repos
 
 
         public Task<Links> GetLinksAsync(Guid linksId) =>
-#pragma warning disable CS8619 // Nullability of reference types in value of type 'Task<Links?>' doesn't match target type 'Task<Links>'.
             _dbContext.Link.FirstOrDefaultAsync(p => p.Id == linksId);
-#pragma warning restore CS8619 // Nullability of reference types in value of type 'Task<Links?>' doesn't match target type 'Task<Links>'.
+
 
 
         public Task<Links> UpdateLinksAsync(Links linksId)
